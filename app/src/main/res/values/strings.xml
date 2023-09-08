@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">LifeCyclev2</string>
+    <string name="password">Password</string>
+    <string name="email">E-mail</string>
+    <string name="submit">Submit</string>
+    <string name="userIinfo">User Info</string>
+    <string name="userDetails">Optional details</string>
+    <string name="logout">Logout</string>
+    <string name="userName">Your name</string>
+    <string name="userAge">Your age</string>
+    <string name="livingSituation">House or apartment</string>
+    <string name="radioHouse">House</string>
+    <string name="radioApartment">Apartment</string>
+    <string name="checkboxPets">Pets?</string>
+    <string name="switchAlone">Living alone?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

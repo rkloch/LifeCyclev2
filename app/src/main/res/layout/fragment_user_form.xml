@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserForm">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/userNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/userNameInput"
+                android:text="@string/userName" />
+
+            <EditText
+                android:id="@+id/userNameInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:height="50dp"
+                android:background="@color/lightgrey"
+                android:ems="10"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/userAgeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/userAgeInput"
+                android:text="@string/userAge" />
+
+            <EditText
+                android:id="@+id/userAgeInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:height="50dp"
+                android:background="@color/lightgrey"
+                android:ems="10"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/submitUserInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/submit" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
