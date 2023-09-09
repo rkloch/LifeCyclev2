@@ -7,12 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 
 class UserActivity : AppCompatActivity() {
-    var user = "";
+    var user = ""
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
-        val b : Bundle? = intent.extras
+        val b: Bundle? = intent.extras
         user = b?.getString("user").toString()
         val userInfoBtn = findViewById<Button>(R.id.userInfoBtn)
         val userExtraInfo = findViewById<Button>(R.id.userExtraInfoBtn)
@@ -22,23 +22,17 @@ class UserActivity : AppCompatActivity() {
         fm.beginTransaction().replace(R.id.fragmentContainerView, fragment).commit()
 
 
-        userInfoBtn.setOnClickListener(){
+        userInfoBtn.setOnClickListener() {
             val fragment = UserForm()
             fm.beginTransaction().replace(R.id.fragmentContainerView, fragment).commit()
-            val userInfoSubmit = findViewById<Button>(R.id.submitUserInfo)
-            userInfoSubmit.setOnClickListener(){
 
-            }
         }
-        userExtraInfo.setOnClickListener(){
+        userExtraInfo.setOnClickListener() {
             val fragment = UserDetailsForm()
             fm.beginTransaction().replace(R.id.fragmentContainerView, fragment).commit()
-            val userInfoSubmit = findViewById<Button>(R.id.submitUserInfo)
-            userInfoSubmit.setOnClickListener(){
 
-            }
         }
-        logoutBtn.setOnClickListener(){
+        logoutBtn.setOnClickListener() {
             val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(intent)

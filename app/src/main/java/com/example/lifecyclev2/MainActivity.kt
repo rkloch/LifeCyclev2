@@ -35,11 +35,11 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 else {
-                    var feedbackSumbit = findViewById(R.id.submitFeedback) as TextView
+                    val feedbackSumbit = findViewById(R.id.submitFeedback) as TextView
                     feedbackSumbit.text = "Wrong password"
                 }
             } else {
-                var feedbackSumbit = findViewById(R.id.submitFeedback) as TextView
+                val feedbackSumbit = findViewById(R.id.submitFeedback) as TextView
                 feedbackSumbit.text = "Can't find user"
             }
 

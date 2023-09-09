@@ -2,16 +2,15 @@ package com.example.lifecyclev2
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.SharedPreferences.Editor
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
+import android.widget.CheckBox
 import android.widget.RadioButton
-import android.widget.RadioGroup
+import android.widget.Switch
 import androidx.fragment.app.Fragment
 
 
@@ -42,29 +41,56 @@ class UserDetailsForm : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
+        val view: View = inflater!!.inflate(R.layout.fragment_user_details_form, container, false)
+
+        return inflater.inflate(R.layout.fragment_user_details_form, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val activity: UserActivity? = activity as UserActivity?
         val user: String? = activity?.user
         if (user != null) {
             Log.d("user", user)
         }
-        val preferences : SharedPreferences? =
+        val preferences: SharedPreferences? =
             this.activity?.getSharedPreferences("pref_$user", Context.MODE_PRIVATE)
         val editor = preferences?.edit()
-        // Inflate the layout for this fragment
-        val view: View = inflater!!.inflate(R.layout.fragment_user_details_form, container, false)
-
         val submitUserDetailsBtn = view.findViewById<Button>(R.id.submitUserDetails)
-        submitUserDetailsBtn.setOnClickListener(){
-            val radioGroup = view.findViewById<RadioGroup>(R.id.radioGroup)
-            val selectedRadio = radioGroup.checkedRadioButtonId
-            editor?.putInt("radioChoice", selectedRadio)
+
+        val checkboxPets = view.findViewById<CheckBox>(R.id.checkBoxPets)
+        val switchAlone = view.findViewById<Switch>(R.id.switchAlone)
+        val radioApartment = view.findViewById<RadioButton>(R.id.radioApartment)
+        val radioHouse = view.findViewById<RadioButton>(R.id.radioHouse)
+
+        if (preferences != null) {
+            checkboxPets.isChecked = preferences.getBoolean("hasPets", false)
+            switchAlone.isChecked = preferences.getBoolean("livesAlone", false)
+            if (preferences.getBoolean("house", false)) {
+                radioHouse.isChecked = true
+            } else {
+                radioApartment.isChecked = true
+            }
+
+        }
+
+
+
+        submitUserDetailsBtn.setOnClickListener {
+
+            editor?.putBoolean("hasPets", checkboxPets.isChecked)
+            editor?.putBoolean("livesAlone", switchAlone.isChecked)
+            editor?.putBoolean("house", radioHouse.isChecked)
+
+            editor?.commit()
+
             editor?.commit()
 
         }
-        return inflater.inflate(R.layout.fragment_user_details_form, container, false )
     }
 
 
@@ -79,12 +105,11 @@ class UserDetailsForm : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UserDetailsForm().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        fun newInstance(param1: String, param2: String) = UserDetailsForm().apply {
+            arguments = Bundle().apply {
+                putString(ARG_PARAM1, param1)
+                putString(ARG_PARAM2, param2)
             }
+        }
     }
 }
